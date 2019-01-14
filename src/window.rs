@@ -51,15 +51,20 @@ pub fn run() {
             }
         }
 
-
         {
             use conrod_core::{Positionable, Sizeable};
             let ui = &mut ui.set_widgets();
-            App::new()
+            for event in App::new()
                 .parent(ui.window)
                 .wh_of(ui.window)
                 .top_left()
-                .set(ids.app, ui);
+                .set(ids.app, ui) {
+                use crate::components::AppEvent;
+                match event {
+                    AppEvent::SetTitle(title) => display.0.gl_window().set_title(&title),
+                    AppEvent::Exit => break 'main,
+                }
+            }
         }
 
         if let Some(primitives) = ui.draw_if_changed() {
