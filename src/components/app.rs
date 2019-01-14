@@ -43,7 +43,7 @@ impl Widget for App {
             ..
         } = args;
 
-        widget::Rectangle::fill_with(rect.dim(), ui.theme.shape_color)
+        widget::Rectangle::fill_with(rect.dim(), ui.theme.background_color)
             .parent(id).graphics_for(id)
             .xy(rect.xy())
             .set(state.ids.background, ui);

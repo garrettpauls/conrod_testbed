@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = []
 edition = "2018"
 description = "A testbed for messing with ideas using conrod for UI"
+license = "Unlicense"
 
 [dependencies]
 conrod_core = "0.62"
