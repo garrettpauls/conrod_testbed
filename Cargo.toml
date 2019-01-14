@@ -1,0 +1,14 @@
+[package]
+name = "conrod_testbed"
+version = "0.1.0"
+authors = []
+edition = "2018"
+description = "A testbed for messing with ideas using conrod for UI"
+
+[dependencies]
+conrod_core = "0.62"
+conrod_winit = "0.62"
+conrod_glium = "0.62"
+conrod_derive = "0.62"
+glium = "0.23"
+ttf-noto-sans = "0.1"
