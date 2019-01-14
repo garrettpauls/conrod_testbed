@@ -5,6 +5,7 @@ use ttf_noto_sans;
 
 use crate::components::App;
 use crate::support::{EventLoop, GliumDisplayWinitWrapper};
+use crate::systems::SlowBackgroundProcessor;
 
 const INITIAL_TITLE: &str = env!("CARGO_PKG_NAME");
 const INITIAL_WINDOW_WIDTH: u32 = 800;
@@ -34,6 +35,8 @@ pub fn run() {
 
     let ids = Ids::new(ui.widget_id_generator());
 
+    let slow_processor = SlowBackgroundProcessor::new();
+
     let mut event_loop = EventLoop::new();
     'main: loop {
         for event in event_loop.next(&mut events_loop) {
@@ -54,7 +57,7 @@ pub fn run() {
         {
             use conrod_core::{Positionable, Sizeable};
             let ui = &mut ui.set_widgets();
-            for event in App::new()
+            for event in App::new(&slow_processor)
                 .parent(ui.window)
                 .wh_of(ui.window)
                 .top_left()
@@ -62,6 +65,7 @@ pub fn run() {
                 use crate::components::AppEvent;
                 match event {
                     AppEvent::SetTitle(title) => display.0.gl_window().set_title(&title),
+                    AppEvent::Process(input) => slow_processor.send(input),
                     AppEvent::Exit => break 'main,
                 }
             }
@@ -75,4 +79,6 @@ pub fn run() {
             target.finish().unwrap();
         }
     }
+
+    slow_processor.close();
 }

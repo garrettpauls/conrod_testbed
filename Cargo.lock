@@ -156,6 +156,7 @@ dependencies = [
  "conrod_glium 0.62.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "conrod_winit 0.62.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "glium 0.23.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.6.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "ttf-noto-sans 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
